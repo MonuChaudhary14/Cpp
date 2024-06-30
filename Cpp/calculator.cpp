@@ -79,7 +79,6 @@ public:
     {
         cout << "The minimum value between " << a << " and " << b << " is " << fmin(a, b) << endl;
     }
-    void 
 };
 
 class hybrid : public simple, public scientificc

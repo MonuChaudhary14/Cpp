@@ -76,6 +76,19 @@ int main()
         cout << "No special cases" << endl;
         break;
     }
+
+    cout << "Enter a letter ";
+    char c;
+    cin >> c;
+
+    if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u')
+    { /*Here || is or*/
+        cout << "This is vowel";
+    }
+    else
+    {
+        cout << "This is consonant";
+    }
     cout << endl;
     // Loops in C++
     // 1.For loop
