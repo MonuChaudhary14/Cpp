@@ -8,7 +8,7 @@ int k = 40;
 int m = 60; /*This is a global operator*/
 int main()
 {
-    // this is not included in output
+    // this is not included in output               
     /*
     This
     is
@@ -22,7 +22,7 @@ int main()
     // Data types:-  int , float, char, bool,double
     int sum = 6;
     cout << "Hello World " << sum; /*Video no.3*/
-    cout << "\n";
+    cout << "\n";                  /*We can also use  cout<<'\n';   */
     int g = 1;
     int h = 2;
     h = 15; /*To change the value we can use this before the system print the value */
@@ -43,7 +43,7 @@ int main()
     cout << "Enter the value of num2 \n";
     cin >> num2; /*>> This is called as Extraction Operator*/
 
-    cout << "Sum" << num1 + num2;
+    cout << "Sum " << num1 + num2;
 
     /*We cannot use reserved keywords*/
     // Video no.5
@@ -122,7 +122,9 @@ int main()
     cout << "The size of 50.2f is " << sizeof(50.2f) << endl;
     cout << "The size of 50.2l is " << sizeof(50.2l) << endl;
 
-    // Reference Variables
+    // Reference Variables  
+    // If we give a refernece variable in a function then it change the value of all the name 
+    // like if the value of num is 1 and we increase it value when we give it in a function which contain it refernece then the value which is increased will increase in all the next cases even if it is outside the function
     float name = 12.0;
     float &surname = name;
     cout << name << endl;

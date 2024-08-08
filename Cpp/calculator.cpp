@@ -71,13 +71,17 @@ public:
 
     void sine()
     {
-        ;
+        
         cout << "The sine of " << a + b << " is " << sin(a + b) << endl;
     }
 
     void minimum()
     {
         cout << "The minimum value between " << a << " and " << b << " is " << fmin(a, b) << endl;
+    }
+
+    void power(){
+        cout<<a<< " power "<<b<<" is "<<pow(a, b);
     }
 };
 
@@ -128,6 +132,7 @@ int main()
     h.mod();
     h.squareroot();
     h.exponential();
+    h.power();
 
     return 0;
 }

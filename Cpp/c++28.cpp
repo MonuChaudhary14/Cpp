@@ -32,6 +32,26 @@ public:
     }
 };
 
+class operatoroverloading
+{
+
+public:
+    int a, b;
+
+    int add()
+    {
+        return a + b;
+    }
+
+    void operator+(operatoroverloading &obj)
+    {
+
+        int value1 = this->a;
+        int value2 = obj.a;
+        cout << "Output " << value2 - value1 << endl;
+    }
+};
+
 int main()
 {
     //    Pointers to derived class
@@ -51,6 +71,23 @@ int main()
     derived_class_pointer->var2 = 62;
     derived_class_pointer->var1 = 72;
     derived_class_pointer->display();
+
+    /*Operator Overloading
+        if we want a operator to do two or more type of work then we use this
+
+        Syntax-
+        return type operator(input){
+
+        }
+        + - a + b  In this a is called as current object and b is called as inout argument
+
+    */
+
+    operatoroverloading O, P;
+    O.a = 1;
+    P.a = 5;
+
+    O + P;
 
     return 0;
 }

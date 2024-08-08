@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip> /*To use setw we have to add it*/
 using namespace std;
+
 int main()
 {
     // Constant in C++
@@ -90,6 +91,7 @@ int main()
         cout << "This is consonant";
     }
     cout << endl;
+
     // Loops in C++
     // 1.For loop
     // 2.While Loop
@@ -107,6 +109,12 @@ int main()
         /* code */
         cout << i << endl;
         // If we use i++ here then it take value by 2 common difference
+    }
+
+
+    // We can use multiple condition for different data types like
+    for (int a1 = 0 , b1 = 1, c1 = 2; (a1 >= 0) &&(b1 >= 1) && (c1 >= 2); a1--, b1-- ,c1-- ){
+        cout<<a1<<" "<<b1<<" "<<c1<<" "<<endl;
     }
 
     // Infinite For loop

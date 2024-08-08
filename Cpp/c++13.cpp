@@ -19,15 +19,15 @@ public:
     }
 };
 
-complex ::complex(void /*Can also use int a  */)
-{ /*This is a default constructor as it takes no parameters*/
+complex ::complex(void /*Can also use int a  */)  
+{ /*This is a default constructor as it takes no parameters*/  
     a = 45;
     b = 78;
     // cout<<"Hello world";  /*This can also be used because it is inside the constructor
 }
 int main()
 {
-    complex c1, c2, c3;
+    complex c1, c2, c3;   /*By default a constructor is called which is c1.complex();*/
     c1.printvalue();
     c2.printvalue();
     c3.printvalue();

@@ -95,7 +95,7 @@ int main()
 
 // Rules for virtual function
 // 1.They cannot be static
-// 2.They are accessed ny object pointer
+// 2.They are accessed by object pointer
 // 3.Virtual functions can be a friend of another class
 // 4.A virtual function in base class might not be used
 // 5.If a virtual function is defined in a bse class, there is no need of redefining it in the derived class

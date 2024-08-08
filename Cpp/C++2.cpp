@@ -30,7 +30,16 @@ int main()
     cout << marks[3] << endl;
     cout << marks[4] << endl;
     cout << marks[5] << endl;
+    cout<<marks<<endl;   /*This gives the address of the first element of the array */
+    cout<<&marks[0]<<endl;  /*This also gives the address of forst element of the array because we use '&'  */
+    int i = 3;
+    cout<<i[marks]<<endl;  /*we can also use this, In this we give index outside*/
+    // arr[i] = *(arr+i);   /*Both can be used to get a value from a pointer
+    // i[arr] = *(i+arr);
 
+
+    //  If we invoke the array in the function and change the value of any element in the function, then the value of array change even when it is outside the function which is different from variable case
+    // because when we the function we give the address of first element of the array so we changing the actual array. It does not make copy of it
     cout << endl;
     cout << endl;
     cout << endl;
@@ -49,6 +58,14 @@ int main()
     cout << Math_marks[3] << endl;
     cout << Math_marks[4] << endl;
     cout << Math_marks[5] << endl;
+    // To get the size of an array we use:-
+    cout<<sizeof(Math_marks)/sizeof(int);
+    // Sizeof(int) is used because it show the how many bits are there so on dividing by 4 we get the actual size 
+        int temp[10];
+    int * ptr = &temp[0];
+    cout<<sizeof(*ptr);  /*This shows the size of element value at that address*/
+    cout<<sizeof(ptr);   /*This shows the size of the address of element temp[0]*/
+    cout<<sizeof(&ptr);  /*This shows the size of address of pointer*/
 
     cout << endl;
     cout << endl;
@@ -58,6 +75,15 @@ int main()
     {
         cout << "The value of marks " << i << " is " << marks[i] << endl;
     }
+
+    int n;
+    cin >> n;
+    int arr[n] = {};
+
+    for (int i = 0; i < n; i++)
+    {
+        cout << arr[i] << endl;
+    } /*If we do not give a array value then it set all values to 0*/
     cout << endl;
     cout << endl;
     cout << endl;
@@ -80,5 +106,14 @@ int main()
     cout << *(p) << endl;
     cout << *(++p) << endl;
 
+    // character pointer
+    char temp1 = 'z';
+
+    char *p1 = &temp1;
+
+    cout<<p<<endl;    /*It print the whole string until null character comes*/
+
+
+    char * c2 = "abcde";  /*This may work but do not use this*/
     return 0;
 }

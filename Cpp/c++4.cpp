@@ -42,3 +42,6 @@ void g(void)
 {
     cout << "\nHello, Good Morning";
 }
+
+// When a function is called with some value then a copy of number is formed in function it does not affect the number
+// Like when we give a function value n and increase it in the function but if we call it without function even when the function is called it show the original value of n even it return a value

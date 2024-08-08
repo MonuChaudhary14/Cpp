@@ -55,7 +55,8 @@ int main()
     monu.setbase2int(5);
     monu.show();
     //Ambibuity 1
-    monu.greet();     
+    monu.greet();   
+    monu.base1 :: greet();   /*We can aslo solve ambiguity by using this*/  
 
     //Ambubuity 2
     // If we have the desired function in base class and the another class is inherited from it then it display the output of first class
