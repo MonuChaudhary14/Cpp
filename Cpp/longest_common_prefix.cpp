@@ -14,7 +14,7 @@ public:
             return "";
         }
 
-        // Sort thehe strings to find the most dissimilar pair
+        // Sort the strings to find the most dissimilar pair
         sort(strs.begin(), strs.end());
 
         // Compare the first and last strings

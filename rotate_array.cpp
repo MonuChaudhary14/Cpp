@@ -7,7 +7,7 @@ void rotate(int arr[] , int n  , int k){
 
     for(int i = 0; i < n; i++){
        temp[i] = arr[i];
-    }   
+    }
 
     for(int j = 0; j < n; j++){
 
