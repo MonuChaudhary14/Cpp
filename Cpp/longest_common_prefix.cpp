@@ -1,48 +1,159 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
-
 using namespace std;
 
-class Solution
+string prefix(vector<string> &arr, int n)
 {
-public:
-    string longestCommonPrefix(vector<string> &strs)
+
+    string ans = "";
+
+    // traversing all characters of first string
+    for (int i = 0; i < arr[0].length(); i++)
     {
-        if (strs.empty())
+
+        char ch = arr[0][i];
+
+        bool match = true;
+
+        // for compairing ch with rest
+
+        for (int j = 1; j < n; j++)
         {
-            return "";
+
+            // not match
+
+            if (arr[j].size() < i || ch != arr[j][i])
+            {
+                match = false;
+                break;
+            }
+        }
+        if (match == false)
+        {
+            break;
+        }
+        else
+        {
+            ans.push_back(ch);
+        }
+    }
+    return ans;
+}
+
+// another method
+
+class trienode
+{
+
+public:
+    char data;
+    trienode *children[26];
+    int childcount;
+    bool isterminal;
+
+    trienode(char ch)
+    {
+
+        data = ch;
+
+        for (int i = 0; i < 26; i++)
+        {
+            children[i] = NULL;
+        }
+        childcount = 0;
+        isterminal = false;
+    }
+};
+
+class trie
+{
+
+public:
+    trienode *root;
+
+    trie(char ch)
+    {
+        root = new trienode(ch);
+    }
+
+    void insertUtil(trienode *root, string word)
+    {
+
+        // base case
+        if (word.length() == 0)
+        {
+            root->isterminal = true;
+            return;
         }
 
-        // Sort the strings to find the most dissimilar pair
-        sort(strs.begin(), strs.end());
+        int index = word[0] - 'a';
+        trienode *child;
 
-        // Compare the first and last strings
-        string prefix;
-        for (size_t i = 0; i < strs[0].size(); ++i)
+        // present
+        if (root->children[index] != NULL)
         {
-            if (strs[0][i] == strs.back()[i])
+            child = root->children[index];
+        }
+        else
+        {
+            // absent
+            child = new trienode(word[0]);
+            root->childcount++;
+            root->children[index] = child;
+        }
+
+        // rescursion
+        insertUtil(child, word.substr(1));
+    }
+
+    void insertword(string word)
+    {
+        insertUtil(root, word);
+    }
+
+    void lcp(string str, string &ans)
+    {
+
+        for (int i = 0; i < str.length(); i++)
+        {
+
+            char ch = str[i];
+
+            if (root->childcount == 1)
             {
-                prefix += strs[0][i];
+                ans.push_back(ch);
+                // move forward
+                int index = ch - 'a';
+                root = root->children[index];
             }
             else
             {
                 break;
             }
-        }
 
-        return prefix;
+            if (root->isterminal)
+            {
+                break;
+            }
+        }
     }
 };
 
+string longestprefix(vector<string> &arr, int n)
+{
+
+    trie *t = new trie('\0');
+
+    // insert all strings into trie
+
+    for (int i = 0; i < n; i++)
+    {
+        t->insertword(arr[i]);
+    }
+}
+
 int main()
 {
-    Solution sol;
-    vector<string> strs1 = {"flower", "flow", "flight"};
-    cout << sol.longestCommonPrefix(strs1) << endl; // Output: "fl"
-
-    vector<string> strs2 = {"dog", "racecar", "car"};
-    cout << sol.longestCommonPrefix(strs2) << endl; // Output: ""
 
     return 0;
 }

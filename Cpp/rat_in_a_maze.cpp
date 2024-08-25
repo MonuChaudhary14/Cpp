@@ -1,84 +1,100 @@
 #include <iostream>
-#include <bits/stdc++.h>
+#include<vector>
+#include<algorithm>     /*To use sort*/
 using namespace std;
 
-bool issafe(int x, int y, vector<vector<bool>> &vis, vector<vector<int>> &arr, int n)
-{
+bool issafe(int x , int y , int n , vector<vector<int>> visited , vector<vector<int>>& m){
 
-    if ((x >= 0 && x < n) && (y >= 0 && y < n) && vis[x][y] != 1 && arr[x][y] == 1)
-    {
-
+    if((x >= 0 && x < n) && ( y >= 0 && y < n) && visited[x][y] == 0 && m[x][y] == 1){
         return true;
     }
-    else
-    {
+    else{
         return false;
     }
 }
 
-void solve(int x, int y, vector<vector<int>> &arr, int n, vector<string> &ans, vector<vector<bool>> &vis, string path)
-{
-    // base case
-    if (x == n - 1 && y == n - 1)
-    {
+void solve(vector<vector<int>>& m ,  int n , vector<string>& ans , int x , int y , vector<vector<int>> visited , string path){
+
+    if(x == n-1 && y == n-1){
         ans.push_back(path);
-        return;
+        return ;
     }
 
-    vis[x][y] = 1;
+    visited[x][y] = 1;
 
-    // down
-    if (issafe(x + 1, y, vis, arr, n))
-    {
-        vis[x][y] = 1;
-        solve(x + 1, y, arr, n, ans, vis, path + 'D');
-        vis[x][y] = 0;
+    // 4 choices
+
+    // Down
+    int newx = x+1;
+    int newy = y;
+
+    if(issafe(newx , newy , n , visited , m)){
+        path.push_back('D');
+        solve(m , n , ans , newx , newy , visited , path);
+        path.pop_back();
     }
 
-    // left
-    if (issafe(x, y - 1, vis, arr, n))
-    {
-        vis[x][y] = 1;
-        solve(x, y - 1, arr, n, ans, vis, path + 'L');
-        vis[x][y] = 0;
+    // Right
+    int newx = x;
+    int newy = y+1;
+
+    if(issafe(newx , newy , n , visited , m)){
+        path.push_back('R');
+        solve(m , n , ans , newx , newy , visited , path);
+        path.pop_back();
     }
 
-    // right
-    if (issafe(x, y + 1, vis, arr, n))
-    {
-        vis[x][y] = 1;
-        solve(x, y + 1, arr, n, ans, vis, path + 'R');
-        vis[x][y] = 0;
+    // Up
+    int newx = x-1;
+    int newy = y;
+
+    if(issafe(newx , newy , n , visited , m)){
+        path.push_back('U');
+        solve(m , n , ans , newx , newy , visited , path);
+        path.pop_back();
     }
 
-    // up
-    if (issafe(x - 1, y, vis, arr, n))
-    {
-        vis[x][y] = 1;
-        solve(x - 1, y, arr, n, ans, vis, path + 'U');
-        vis[x][y] = 0;
+    // Left
+    int newx = x;
+    int newy = y-1;
+
+    if(issafe(newx , newy , n , visited , m)){
+        path.push_back('L');
+        solve(m , n , ans , newx , newy , visited , path);
+        path.pop_back();
     }
 
-    vis[x][y] = 0;
+    visited[x][y] = 0;
+
+
 }
 
-vector<string> searchmaze(vector<vector<int>> &arr, int n)
-{
+vector<string> findpath(vector<vector<int>>& m , int n){
 
     vector<string> ans;
 
-    if (arr[0][0] == 0)
-    {
+    if(m[0][0] == 0){
         return ans;
     }
 
-    vector<vector<bool>> visited(n, vector<bool>(n, 0));
+    int srcx = 0;
+    int srcy = 0;
+
+    vector<vector<int>> visited = m;
+    // initilise with 0
+
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < n; j++){
+            visited[i][j] = 0;
+        }
+    }
 
     string path = "";
-
-    solve(0, 0, arr, n, ans, visited, path);
-
+    solve(m , n , ans , srcx , srcy , visited ,path);
+    sort(ans.begin() , ans.end());
     return ans;
+
+
 }
 
 int main()
